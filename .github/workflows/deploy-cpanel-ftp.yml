@@ -1,0 +1,56 @@
+name: Deploy Vue (Vite) to cPanel via FTP (portofolio folder)
+
+on:
+  # Otomatis deploy setiap ada push ke main
+  push:
+    branches: ["main"]
+
+  # Bisa deploy manual dari tab Actions
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Ambil source code dari repo ke runner GitHub
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # Setup Node.js untuk build (Node 20 aman untuk tooling modern)
+      # cache npm membuat pipeline lebih cepat pada run berikutnya
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # Install dependencies secara konsisten (menggunakan package-lock.json)
+      - name: Install dependencies
+        run: npm ci
+
+      # Build project pakai Vite → output default: dist/
+      - name: Build project
+        run: npm run build
+
+      # Cek dist ada dan tampilkan isinya (buat debugging kalau ada error)
+      - name: Verify dist output
+        run: |
+          test -d dist
+          echo "=== dist content ==="
+          ls -la dist
+
+      # Upload dist/ ke server lewat FTP:
+      # - local-dir: dist/ (hasil build)
+      # - server-dir: portofolio/ (karena FTP kamu mendarat di public_html)
+      # - clean-slate: true menghapus file lama yang tidak ada di dist (biar rapi)
+      - name: Deploy to cPanel (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          dangerous-clean-slate: true
+          log-level: verbose
