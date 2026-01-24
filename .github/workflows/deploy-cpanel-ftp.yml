@@ -2,8 +2,13 @@ name: Deploy Vue (Vite) to cPanel via FTP (portofolio folder)
 
 on:
   # Otomatis deploy setiap ada push ke main
+  # push:
+  #   branches: ["main"]
+
+  # Deploy hanya saat push tag yang diawali "v"
   push:
-    branches: ["main"]
+    tags:
+      - "v*"
 
   # Bisa deploy manual dari tab Actions
   workflow_dispatch: {}
