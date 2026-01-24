@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -8,7 +9,16 @@
   --color-accent-green: #34A853;
   --color-accent-yellow: #FBBC05;
 
-  --font-sans: 'Inter', sans-serif;
+  /* React Portfolio Colors */
+  --color-white-50: #d9ecff;
+  --color-black-50: #1c1c21;
+  --color-black-100: #0e0e10;
+  --color-black-200: #282732;
+  --color-blue-50: #839cb5;
+  --color-blue-100: #2d2d38;
+
+  --font-mona: "Mona Sans", sans-serif;
+  --font-sans: "Mona Sans", sans-serif;
 
   --animate-float: float 10s linear infinite;
 
@@ -43,6 +53,11 @@
   --color-bg: var(--color-background);
 }
 
+html {
+  scrollbar-color: var(--color-black-200) var(--color-black-100);
+  scrollbar-width: thin;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -64,4 +79,95 @@ body {
   z-index: 9999;
   opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
+
+@layer components {
+
+  /* Layout */
+  .section-padding {
+    @apply px-5 md:px-10 py-10 md:py-20;
+  }
+
+  .grid-12-cols {
+    @apply grid grid-cols-1 xl:grid-cols-12 gap-10;
+  }
+
+  /* Cards */
+  .card-border {
+    @apply border border-black-50 bg-black-100;
+  }
+
+  /* Tech Stack Specific */
+  .tech-grid {
+    @apply grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16;
+  }
+
+  .tech-card {
+    @apply relative overflow-hidden group xl:rounded-full rounded-lg h-52;
+  }
+
+  .tech-card-animated-bg {
+    @apply absolute left-0 bottom-[-100%] w-full h-full bg-[#2D3240] group-hover:bottom-0 transition-all duration-700;
+  }
+
+  .tech-card-content {
+    @apply flex flex-col md:justify-center items-center xl:gap-5 h-full overflow-hidden relative z-10 group-hover:cursor-grab;
+  }
+
+  .tech-card-content p {
+    @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white-50 text-center;
+  }
+
+  .tech-icon-wrapper {
+    @apply flex justify-center items-center relative transition-transform duration-300 group-hover:scale-110;
+  }
+
+  .tech-icon-wrapper img {
+    @apply w-full h-full object-contain;
+  }
+
+  /* Contact Form Specific */
+  .contact-form-label {
+    @apply block text-white-50 mb-2 font-semibold;
+  }
+
+  .contact-form-input {
+    @apply w-full px-4 py-4 md:text-base text-sm text-white placeholder:text-blue-50 bg-blue-100 rounded-md border-none outline-none focus:ring-2 focus:ring-blue-50/50 transition-all;
+  }
+
+  /* CTA Button */
+  .cta-button {
+    @apply px-4 py-4 rounded-lg bg-black-200 flex justify-center items-center relative cursor-pointer overflow-hidden w-full transition-all duration-300 hover:bg-black-50;
+  }
+
+  .cta-button .bg-circle {
+    @apply absolute -right-10 origin-center top-1/2 -translate-y-1/2 w-[120%] h-[120%] group-hover:size-10 group-hover:right-10 rounded-full bg-white-50 transition-all duration-500 opacity-0 group-hover:opacity-100;
+  }
+
+  .cta-button .text {
+    @apply md:text-lg text-white font-semibold transition-all duration-500 z-10 group-hover:text-black-100 group-hover:-translate-x-5 xl:translate-x-0 -translate-x-5;
+  }
+
+  .cta-button .arrow-wrapper {
+    @apply group-hover:bg-white-50 size-10 rounded-full absolute right-10 top-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden z-10;
+  }
+
+  .cta-button .arrow-wrapper img {
+    @apply size-5 xl:-translate-y-32 translate-y-0 animate-bounce group-hover:translate-y-0 transition-all duration-500 invert group-hover:invert-0;
+  }
+}
+
+/* Hidden Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
 }

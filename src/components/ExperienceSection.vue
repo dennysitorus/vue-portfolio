@@ -32,7 +32,7 @@ const experiences = ref([
 <template>
   <section id="experience" class="py-20 px-4 w-full min-h-screen bg-white/50 relative overflow-hidden">
     <div class="max-w-4xl mx-auto relative z-10">
-      <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center tracking-tight">
+      <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center tracking-tight">
         Professional <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-red to-accent-yellow">Work Experience</span>
       </h2>
 

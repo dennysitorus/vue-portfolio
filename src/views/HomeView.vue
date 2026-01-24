@@ -2,7 +2,7 @@
 import HeroSection from '../components/HeroSection.vue'
 import ProjectsSection from '../components/ProjectsSection.vue'
 import ExperienceSection from '../components/ExperienceSection.vue'
-import SkillsSection from '../components/SkillsSection.vue'
+import TechStackSection from '../components/TechStackSection.vue'
 import ContactSection from '../components/ContactSection.vue'
 </script>
 
@@ -13,7 +13,7 @@ import ContactSection from '../components/ContactSection.vue'
     <HeroSection />
     <ProjectsSection />
     <ExperienceSection />
-    <!-- <SkillsSection /> -->
+    <TechStackSection />
     <ContactSection />
   </main>
 </template>

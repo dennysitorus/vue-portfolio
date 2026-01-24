@@ -1,114 +1,147 @@
 <script setup>
 import { ref } from 'vue';
+import emailjs from '@emailjs/browser';
+import TitleHeader from './TitleHeader.vue';
+import ContactExperience from './ContactExperience.vue';
 
-const form = ref({
+const formRef = ref(null);
+
+const formData = ref({
   name: '',
   email: '',
-  company: '',
-  message: ''
+  companionName: '',
+  message: '',
 });
 
-const isSubmitting = ref(false);
-const submitted = ref(false);
+const loading = ref(false);
 
-const submitForm = async () => {
-    isSubmitting.value = true;
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    isSubmitting.value = false;
-    submitted.value = true;
-    
-    // Reset after 3 seconds
-    setTimeout(() => {
-        submitted.value = false;
-        form.value = { name: '', email: '', company: '', message: '' };
-    }, 3000);
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  formData.value = {
+    ...formData.value,
+    [name]: value,
+  };
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  loading.value = true;
+
+  if (!formRef.value) return;
+
+  try {
+    await emailjs.sendForm(
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      formRef.value,
+      import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+    );
+  } catch (e) {
+    console.log('EmailJS Error, ', e);
+  } finally {
+    loading.value = false;
+  }
+
+  // reset form
+  formData.value = { name: '', email: '', message: '' };
 };
 </script>
 
 <template>
-  <section id="contact" class="py-24 px-4 w-full bg-white relative">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-6xl font-bold mb-6">
-          Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-red to-accent-yellow">Connect</span>
-        </h2>
-        <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-            Ready to start your next project? Fill out the form below or send me an email directly.
-        </p>
-      </div>
-
-      <div class="bg-gray-50 p-8 md:p-12 rounded-[2.5rem] shadow-lg border border-gray-100 relative overflow-hidden">
-        
-        <form @submit.prevent="submitForm" class="space-y-6 relative z-10" v-if="!submitted">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label class="text-sm font-bold text-gray-700 uppercase tracking-wide">Name</label>
-              <input 
-                v-model="form.name" 
-                type="text" 
-                required
-                class="w-full px-6 py-4 rounded-xl bg-white border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-gray-300"
-                placeholder="John Doe"
-              >
-            </div>
-            <div class="space-y-2">
-              <label class="text-sm font-bold text-gray-700 uppercase tracking-wide">Email</label>
-              <input 
-                v-model="form.email" 
-                type="email" 
-                required
-                class="w-full px-6 py-4 rounded-xl bg-white border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-gray-300"
-                placeholder="john@example.com"
-              >
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <label class="text-sm font-bold text-gray-700 uppercase tracking-wide">Company <span class="text-gray-400 font-normal lowercase">(optional)</span></label>
-            <input 
-              v-model="form.company" 
-              type="text" 
-              class="w-full px-6 py-4 rounded-xl bg-white border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-gray-300"
-              placeholder="Your Company Ltd."
+  <section id="contact" class="flex justify-center items-center py-24 min-h-screen px-5 md:px-10 bg-black text-white font-sans">
+    <div class="w-full h-full md:px-10 px-5">
+      <TitleHeader
+        title="Get in Touch – Let's Connect"
+        sub="💬 Have questions or ideas? Let's talk! 🚀"
+      />
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-10 mt-16">
+        <div class="xl:col-span-5">
+          <div class="flex flex-col justify-center items-center border border-[#1c1c21] bg-[#0e0e10] rounded-xl p-10">
+            <form
+              ref="formRef"
+              @submit="handleSubmit"
+              class="w-full flex flex-col gap-7"
             >
+              <div>
+                <label for="name" class="block text-[#d9ecff] mb-2 font-semibold">Your name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  v-model="formData.name"
+                  @input="handleChange"
+                  placeholder="What should i call you?"
+                  required
+                  class="w-full px-4 py-4 md:text-base text-sm text-white placeholder:text-[#839cb5] bg-[#2d2d38] rounded-md border-none outline-none focus:ring-2 focus:ring-[#839cb5]/50 transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-[#d9ecff] mb-2 font-semibold">Your Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  v-model="formData.email"
+                  @input="handleChange"
+                  placeholder="Your email address, please?"
+                  required
+                  class="w-full px-4 py-4 md:text-base text-sm text-white placeholder:text-[#839cb5] bg-[#2d2d38] rounded-md border-none outline-none focus:ring-2 focus:ring-[#839cb5]/50 transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="companionName" class="block text-[#d9ecff] mb-2 font-semibold">Companion Name <span class="text-sm text-[#839cb5] font-normal">(Optional)</span></label>
+                <input
+                  type="text"
+                  id="companionName"
+                  name="companionName"
+                  v-model="formData.companionName"
+                  @input="handleChange"
+                  placeholder="Who's sticking with you?"
+                  class="w-full px-4 py-4 md:text-base text-sm text-white placeholder:text-[#839cb5] bg-[#2d2d38] rounded-md border-none outline-none focus:ring-2 focus:ring-[#839cb5]/50 transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="message" class="block text-[#d9ecff] mb-2 font-semibold">Your Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  v-model="formData.message"
+                  @input="handleChange"
+                  placeholder="Tell me anything"
+                  rows="5"
+                  required
+                  class="w-full px-4 py-4 md:text-base text-sm text-white placeholder:text-[#839cb5] bg-[#2d2d38] rounded-md border-none outline-none focus:ring-2 focus:ring-[#839cb5]/50 transition-all min-h-[120px] resize-y"
+                />
+              </div>
+
+              <button type="submit" class="w-full">
+                <div class="px-4 py-4 rounded-lg bg-[#282732] flex justify-center items-center relative cursor-pointer overflow-hidden w-full transition-all duration-300 hover:bg-[#1c1c21] group">
+                  <div class="absolute -right-10 origin-center top-1/2 -translate-y-1/2 w-[120%] h-[120%] group-hover:size-10 group-hover:right-10 rounded-full bg-[#d9ecff] transition-all duration-500 opacity-0 group-hover:opacity-100" />
+                  <p class="md:text-lg text-white font-semibold transition-all duration-500 z-10 group-hover:text-[#0e0e10] group-hover:-translate-x-5 xl:translate-x-0 -translate-x-5">
+                    {{ loading ? "Sending..." : "Send Message" }}
+                  </p>
+                  <div class="group-hover:bg-[#d9ecff] size-10 rounded-full absolute right-10 top-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden z-10">
+                    <img src="/images/arrow-down.svg" alt="arrow" class="size-5 xl:-translate-y-32 translate-y-0 animate-bounce group-hover:translate-y-0 transition-all duration-500 invert group-hover:invert-0" />
+                  </div>
+                </div>
+              </button>
+            </form>
           </div>
-
-          <div class="space-y-2">
-            <label class="text-sm font-bold text-gray-700 uppercase tracking-wide">Message</label>
-            <textarea 
-              v-model="form.message" 
-              required
-              rows="5"
-              class="w-full px-6 py-4 rounded-xl bg-white border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-gray-300 resize-none"
-              placeholder="Tell me about your project..."
-            ></textarea>
-          </div>
-
-          <button 
-            type="submit" 
-            :disabled="isSubmitting"
-            class="w-full py-4 md:py-5 bg-black text-white rounded-xl font-bold text-base md:text-lg hover:bg-gray-900 hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
-          >
-            <span v-if="isSubmitting">Sending...</span>
-            <span v-else>Send Message</span>
-            <svg v-if="!isSubmitting" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </button>
-        </form>
-
-        <div v-else class="text-center py-20 animate-fade-in-up">
-            <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-            </div>
-            <h3 class="text-3xl font-bold mb-4">Message Sent!</h3>
-            <p class="text-gray-500">Thanks for reaching out. I'll get back to you shortly.</p>
         </div>
-
+        <div class="xl:col-span-7 min-h-[600px]">
+          <div class="bg-[#1f1f1f] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+            <ContactExperience />
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+/* No internal styles needed, using Tailwind */
+</style>
