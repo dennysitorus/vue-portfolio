@@ -1,15 +1,61 @@
 
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const displayText = ref('');
+const sentences = [
+  "Enterprise backend and cloud-ready architectures.",
+  "Offline-first Android apps built for real-world conditions.",
+  "Production systems designed for scale, reliability, and longevity."
+];
+let sentenceIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+const typeEffect = () => {
+  const currentSentence = sentences[sentenceIndex];
+  
+  if (isDeleting) {
+    displayText.value = currentSentence.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    displayText.value = currentSentence.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let typeSpeed = isDeleting ? 20 : 40;
+
+  if (!isDeleting && charIndex === currentSentence.length) {
+    isDeleting = true;
+    typeSpeed = 3000; // Wait 3 seconds before deleting
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    sentenceIndex = (sentenceIndex + 1) % sentences.length;
+    typeSpeed = 500; // Wait 0.5s before typing next
+  }
+
+  setTimeout(typeEffect, typeSpeed);
+};
+
+onMounted(() => {
+  typeEffect();
+});
+</script>
 
 <template>
   <section class="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
     <!-- Main Content -->
-    <div class="relative z-10 text-center max-w-4xl px-4 animate-fade-in-up">
-      <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]">
-        Building Scalable <br />
-        <span class="inline-block bg-gradient-to-r from-accent-blue via-accent-red to-accent-yellow bg-clip-text text-transparent mt-2">.NET Solutions</span>
+    <div class="relative z-10 text-center max-w-7xl px-4 animate-fade-in-up">
+      <h1 class="font-bold tracking-tighter mb-8 leading-tight flex flex-col items-center justify-center w-full">
+        <span class="text-4xl md:text-6xl lg:text-7xl md:whitespace-nowrap">Building Production-Grade</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl md:whitespace-nowrap mt-2 pb-2">
+          <span style="background-image: linear-gradient(to right, #512BD4, #0078D4, #00C7FD); -webkit-background-clip: text; background-clip: text; color: transparent;">.NET & Android Systems</span>
+        </span>
       </h1>
-      <p class="text-xl md:text-2xl text-gray-600 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-        Crafting high-performance backend systems and elegant cloud architectures.
+      
+      <!-- Typing Subtitle -->
+      <p class="text-lg md:text-2xl text-slate-600 font-light max-w-3xl mx-auto mb-10 leading-relaxed min-h-[3em]">
+        {{ displayText }}<span class="animate-blink text-slate-800">|</span>
       </p>
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full px-4 sm:px-0">
@@ -32,5 +78,14 @@
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 </style>

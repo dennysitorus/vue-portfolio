@@ -1,83 +1,175 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TitleHeader from './TitleHeader.vue';
+
+gsap.registerPlugin(ScrollTrigger);
+
+// const experiences = ref([
+//   {
+//     id: 1,
+//     role: '.NET Full Stack Developer',
+//     company: 'PT Adaro Logistics',
+//     period: 'Jul 2025 - Present',
+//     description: 'Designing and developing production-grade .NET MVC applications for real-time fuel calculation in logistics operations. Built .NET 9 APIs to support Android mobile applications using Kotlin and Jetpack Compose with offline-first capabilities. Developed automation tools including a Telegram console application and Power Automate workflows to improve operational efficiency and reduce manual processes.',
+//     tags: ['.NET 9', 'ASP.NET MVC', 'REST API', 'Android', 'Kotlin', 'Jetpack Compose', 'SQL Server', 'Azure DevOps']
+//   },
+//   {
+//     id: 2,
+//     role: 'Senior Android Engineer (Consulting)',
+//     company: 'IT Consulting Company',
+//     period: '2025 (3-month Project)',
+//     description: 'Acted as a senior Android consultant for a client-facing project, leading requirement gathering sessions with users and translating business needs into technical solutions. Collaborated with developers to refine implementation approaches, performed code reviews to ensure quality and maintainability, and handled critical bug fixes and hotfixes for production issues. Delivered technical presentations and solution walkthroughs to users to validate outcomes and ensure alignment.',
+//     tags: ['Android', 'Kotlin', 'Consulting', 'Requirement Gathering', 'Code Review', 'Bug Fixing']
+//   },
+//   {
+//     id: 3,
+//     role: 'IT Development Specialist',
+//     company: 'PT Suzuki Finance Indonesia',
+//     period: 'Sept 2021 - Mar 2025',
+//     description: 'Developed and maintained enterprise-grade financial systems using C# with ASP.NET Web Forms and MVC, supporting high-volume transactional operations. Optimized complex T-SQL queries and stored procedures in SQL Server to improve system performance. Integrated SSO and third-party services through secure internal APIs and led refactoring efforts to reduce technical debt and improve maintainability.',
+//     tags: ['C#', 'ASP.NET MVC', 'Web Forms', 'SQL Server', 'T-SQL', 'SSO', 'Enterprise Systems']
+//   },
+//   {
+//     id: 4,
+//     role: 'Android Developer',
+//     company: 'PT Argenta Danika Pradhana',
+//     period: 'Mar 2020 - Sept 2021',
+//     description: 'Developed and deployed Android applications using Java and RxJava, including attendance systems with CameraX, GPS validation, and offline-first functionality. Designed backend services using Laravel Lumen and MySQL with JWT-based authentication and REST APIs. Improved production stability through logging, crash monitoring, and structured error handling across the application lifecycle.',
+//     tags: ['Android', 'Java', 'RxJava', 'Offline-First', 'CameraX', 'Laravel Lumen', 'MySQL', 'REST API']
+//   },
+//   {
+//     id: 5,
+//     role: 'Technical Product Specialist (IoT & Fleet Systems)',
+//     company: 'PT DigitalInstincts Teknologi',
+//     period: 'Oct 2019 - Apr 2020',
+//     description: 'Worked closely with hardware and software teams to ensure IoT telemetry devices operated reliably in production fleet environments. Performed device monitoring and telemetry data analysis using SQL Server queries, supported system analysts with technical insights, prepared technical documentation, and assisted M2M teams in troubleshooting, flashing, and log analysis to maintain system stability in the field.',
+//     tags: ['IoT', 'Telemetry Devices', 'Fleet Management', 'SQL Server', 'M2M', 'System Validation', 'Technical Documentation']
+//   }
+// ]);
 
 const experiences = ref([
   {
     id: 1,
-    role: 'Senior .NET Developer',
-    company: 'Tech Solutions Inc.',
-    period: '2023 - Present',
-    description: 'Leading the development of high-performance microservices architecture. Optimized database queries reducing load times by 40%.',
-    tags: ['.NET 8', 'Azure', 'Kubernetes']
+    role: '.NET Full Stack Developer',
+    company: 'PT Adaro Logistics',
+    period: 'Jul 2025 - Present',
+    description: 'Developing production-grade .NET MVC systems for logistics operations, including real-time fuel calculation. Built .NET 9 APIs supporting Android applications with offline-first capabilities and automated workflows using Telegram bots and Power Automate.',
+    tags: ['.NET 9', 'ASP.NET MVC', 'REST API', 'Android', 'Kotlin', 'Jetpack Compose', 'SQL Server', 'Azure DevOps']
   },
   {
     id: 2,
-    role: 'Software Engineer',
-    company: 'Digital Innovations',
-    period: '2020 - 2023',
-    description: 'Developed and maintained scalable web applications using ASP.NET Core. Collaborated with cross-functional teams to deliver features on time.',
-    tags: ['ASP.NET Core', 'SQL Server', 'React']
+    role: 'Senior Android Engineer (Consulting)',
+    company: 'IT Consulting Company',
+    period: '2025 (3-month Project)',
+    description: 'Led requirement gathering with users, reviewed Android codebases, and handled critical bug fixes and hotfixes. Acted as a technical bridge between users and development teams, including solution walkthroughs and presentations.',
+    tags: ['Android', 'Kotlin', 'Consulting', 'Requirement Gathering', 'Code Review', 'Bug Fixing']
   },
   {
     id: 3,
-    role: 'Junior Developer',
-    company: 'StartUp Hub',
-    period: '2018 - 2020',
-    description: 'Assisted in building RESTful APIs and front-end components. Participated in code reviews and agile ceremonies.',
-    tags: ['C#', 'JavaScript', 'Git']
+    role: 'IT Development Specialist',
+    company: 'PT Suzuki Finance Indonesia',
+    period: 'Sept 2021 - Mar 2025',
+    description: 'Built and maintained enterprise financial systems using C# and ASP.NET. Optimized SQL Server queries, integrated SSO and third-party services, and refactored legacy modules to improve performance and maintainability.',
+    tags: ['C#', 'ASP.NET MVC', 'Web Forms', 'SQL Server', 'T-SQL', 'SSO', 'Enterprise Systems']
+  },
+  {
+    id: 4,
+    role: 'Android Developer',
+    company: 'PT Argenta Danika Pradhana',
+    period: 'Mar 2020 - Sept 2021',
+    description: 'Developed Android applications with offline-first support, CameraX, and GPS validation. Built REST APIs with Laravel Lumen and improved application stability through logging and crash monitoring.',
+    tags: ['Android', 'Java', 'RxJava', 'Offline-First', 'CameraX', 'Laravel Lumen', 'MySQL', 'REST API']
+  },
+  {
+    id: 5,
+    role: 'Technical Product Specialist (IoT & Fleet Systems)',
+    company: 'PT DigitalInstincts Teknologi',
+    period: 'Oct 2019 - Apr 2020',
+    description: 'Supported IoT fleet tracking systems by monitoring telemetry data, validating devices, and assisting M2M teams with troubleshooting and technical documentation to ensure system reliability.',
+    tags: ['IoT', 'Telemetry Devices', 'Fleet Management', 'SQL Server', 'M2M', 'System Validation']
   }
 ]);
+
+const timelineContainer = ref(null);
+const progressLine = ref(null);
+
+onMounted(() => {
+  if (timelineContainer.value && progressLine.value) {
+    gsap.to(progressLine.value, {
+      height: '0%', // Unfill as we scroll
+      ease: 'none',
+      scrollTrigger: {
+        trigger: timelineContainer.value,
+        start: 'top 60%',
+        end: 'bottom 60%',
+        scrub: 0.5,
+      }
+    });
+  }
+});
 </script>
 
 <template>
   <section id="experience" class="py-20 px-4 w-full min-h-screen bg-white/50 relative overflow-hidden">
     <div class="max-w-4xl mx-auto relative z-10">
-      <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center tracking-tight">
-        Professional <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-red to-accent-yellow">Work Experience</span>
-      </h2>
+      <div class="mb-16">
+        <TitleHeader
+          title="Professional Work Experience"
+          sub="Career Path"
+          theme="light"
+        />
+      </div>
 
-      <div class="space-y-8">
-        <div 
-          v-for="(exp, index) in experiences" 
-          :key="exp.id"
-          class="relative pl-8 md:pl-0"
-        >
-          <!-- Timeline Vertical Line for Desktop -->
-          <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2"></div>
-          
-          <div :class="[
-            'md:flex items-center justify-between gap-8 group',
-            index % 2 === 0 ? 'md:flex-row-reverse' : ''
-          ]">
+      <div class="relative" ref="timelineContainer">
+        <!-- Continuous Timeline Line -->
+        <div class="absolute left-[3px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 md:-translate-x-1/2"></div>
+        
+        <!-- Scroll Progress Line -->
+        <div ref="progressLine" class="absolute left-[3px] md:left-1/2 bottom-0 w-0.5 bg-black md:-translate-x-1/2 h-full"></div>
+
+        <div class="space-y-8">
+          <div 
+            v-for="(exp, index) in experiences" 
+            :key="exp.id"
+            class="relative pl-8 md:pl-0"
+          >
             
-            <!-- Timeline Dot -->
-            <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow-md transform -translate-x-[5px] md:-translate-x-1/2 mt-1.5 md:mt-0 z-10 group-hover:scale-125 transition-transform duration-300"></div>
-
-            <!-- Content Card -->
-            <div class="md:w-[45%] mb-8 md:mb-0">
-              <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:-translate-y-1">
-                <div class="flex flex-wrap items-baseline gap-2 mb-2">
-                  <h3 class="text-xl font-bold text-gray-900">{{ exp.role }}</h3>
-                  <span class="text-sm text-primary font-medium">@ {{ exp.company }}</span>
-                </div>
-                <div class="text-sm text-gray-400 mb-4 font-mono">{{ exp.period }}</div>
-                <p class="text-gray-600 mb-4 leading-relaxed">
-                  {{ exp.description }}
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span 
-                    v-for="tag in exp.tags" 
-                    :key="tag"
-                    class="px-3 py-1 text-xs rounded-full bg-gray-50 text-gray-600 border border-gray-100"
-                  >
-                    {{ tag }}
-                  </span>
+            <div :class="[
+              'md:flex items-center justify-between gap-8 group',
+              index % 2 === 0 ? 'md:flex-row-reverse' : ''
+            ]">
+              
+              <!-- Timeline Dot -->
+              <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow-md transform -translate-x-[5px] md:-translate-x-1/2 mt-1.5 md:mt-0 z-10 group-hover:scale-125 transition-transform duration-300"></div>
+  
+              <!-- Content Card -->
+              <div class="md:w-[45%] mb-8 md:mb-0">
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:-translate-y-1">
+                  <div class="flex flex-wrap items-baseline gap-2">
+                    <h3 class="text-xl font-bold text-gray-900">{{ exp.role }}</h3>
+                  </div>
+                  <div class="text-sm text-gray-400 font-mono mb-2"><span class="text-sm text-primary font-medium">@ {{ exp.company }}</span></div>
+                  <div class="text-sm text-gray-400 mb-4 font-mono">{{ exp.period }}</div>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    {{ exp.description }}
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span 
+                      v-for="tag in exp.tags" 
+                      :key="tag"
+                      class="px-3 py-1 text-xs rounded-full bg-gray-50 text-gray-600 border border-gray-100"
+                    >
+                      {{ tag }}
+                    </span>
+                  </div>
                 </div>
               </div>
+              
+              <!-- Empty Space for Alignment -->
+              <div class="md:w-[45%]"></div>
             </div>
-            
-            <!-- Empty Space for Alignment -->
-            <div class="md:w-[45%]"></div>
           </div>
         </div>
       </div>

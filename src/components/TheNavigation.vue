@@ -9,8 +9,8 @@
 
     <!-- Center Links (Desktop) -->
     <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-      <router-link :to="{ path: '/', hash: '#experience' }" class="hover:text-primary transition-colors">Experience</router-link>
       <router-link :to="{ path: '/', hash: '#projects' }" class="hover:text-primary transition-colors">Projects</router-link>
+      <router-link :to="{ path: '/', hash: '#experience' }" class="hover:text-primary transition-colors">Experience</router-link>
       <router-link :to="{ path: '/', hash: '#tech-stack' }" class="hover:text-primary transition-colors">Tech</router-link>
     </div>
 

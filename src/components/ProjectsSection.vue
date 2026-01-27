@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-
-
+import TitleHeader from './TitleHeader.vue';
 
 const projects = [
   {
@@ -32,12 +31,12 @@ const projects = [
     link: '#'
   },
   {
-    id: 4,
-    title: 'Fitness Tracker App',
+    id: 6,
+    title: 'Menarique',
     category: 'Mobile',
-    image: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80',
-    description: 'Mobile application for tracking workouts and nutrition. Integrates with wearable devices.',
-    stack: ['Flutter', 'Firebase', 'Node.js'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769420980/project1_ejreyd.png',
+    description: 'Menarique is a Kotlin-based Android application designed to perform accurate vehicle license plate recognition using OCR and computer vision, supporting vehicle verification and payment status validation workflows.',
+    stack: ['OCR', 'Computer Vision', 'Kotlin'],
     link: '#'
   },
   {
@@ -56,9 +55,13 @@ const projects = [
 <template>
   <section id="projects" class="py-24 px-4 w-full min-h-screen relative">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center">
-        Selected <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-red to-accent-yellow">Projects</span>
-      </h2>
+      <div class="mb-16">
+        <TitleHeader
+          title="Selected Projects"
+          sub="Highlights"
+          theme="light"
+        />
+      </div>
 
       <!-- Grid Layout -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -84,7 +87,7 @@ const projects = [
           <!-- Card Content -->
           <div class="p-6 flex flex-col flex-grow">
             <h3 class="text-2xl font-bold mb-3 text-gray-900 group-hover:text-primary transition-colors">{{ project.title }}</h3>
-            <p class="text-gray-600 line-clamp-3 text-sm mb-6 flex-grow leading-relaxed">{{ project.description }}</p>
+            <p class="text-gray-600 line-clamp-6 text-sm mb-6 flex-grow leading-relaxed">{{ project.description }}</p>
             
             <div class="flex flex-wrap gap-2 mt-auto">
               <span v-for="t in project.stack.slice(0,3)" :key="t" class="text-xs font-semibold px-2.5 py-1 bg-gray-50 text-gray-600 rounded-md border border-gray-100">

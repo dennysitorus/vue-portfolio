@@ -9,6 +9,11 @@
   --color-accent-green: #34A853;
   --color-accent-yellow: #FBBC05;
 
+  /* .NET Brand Colors */
+  --color-dotnet-purple: #512BD4;
+  --color-dotnet-blue: #0078D4;
+  --color-dotnet-cyan: #00C7FD;
+
   /* React Portfolio Colors */
   --color-white-50: #d9ecff;
   --color-black-50: #1c1c21;
@@ -68,7 +73,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Antigravity Grain Effect */
+/* Grain Effect */
 .grain-overlay {
   position: fixed;
   top: 0;
@@ -85,6 +90,17 @@ body {
   .flex-center {
     @apply flex justify-center items-center;
   }
+}
+
+/* .NET Brand Gradient - defined outside layer for reliable loading */
+/* .NET Brand Gradient */
+.dotnet-gradient-text {
+  display: inline-block;
+  background-image: linear-gradient(to right, #512BD4, #0078D4, #00C7FD) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 @layer components {
@@ -109,7 +125,7 @@ body {
   }
 
   .tech-card {
-    @apply relative overflow-hidden group xl:rounded-full rounded-lg h-52;
+    @apply relative overflow-hidden xl:rounded-full rounded-lg h-52;
   }
 
   .tech-card-animated-bg {

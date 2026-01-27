@@ -1,16 +1,20 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 import TitleHeader from './TitleHeader.vue';
 import ContactExperience from './ContactExperience.vue';
 
 const formRef = ref(null);
 
+
+
 const formData = ref({
   name: '',
   email: '',
-  companionName: '',
+  company: '',
   message: '',
+  date: '',
 });
 
 const loading = ref(false);
@@ -27,6 +31,12 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   loading.value = true;
+  
+  // Set current date/time
+  formData.value.date = new Date().toLocaleString();
+
+  // Wait for DOM update to ensure hidden input has the value
+  await nextTick();
 
   if (!formRef.value) return;
 
@@ -37,14 +47,35 @@ const handleSubmit = async (e) => {
       formRef.value,
       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
     );
+    
+    Swal.fire({
+      title: 'Message Sent!',
+      text: "I'll get back to you as soon as possible.",
+      icon: 'success',
+      confirmButtonText: 'Awesome',
+      confirmButtonColor: '#1c1c21',
+      background: '#0e0e10',
+      color: '#ffffff',
+    });
+
+    // reset form
+    formData.value = { name: '', email: '', message: '', company: '', date: '' };
+
   } catch (e) {
     console.log('EmailJS Error, ', e);
+    
+    Swal.fire({
+      title: 'Oops...',
+      text: "Something went wrong. Please try again later or contact me directly via email.",
+      icon: 'error',
+      confirmButtonText: 'Okay',
+      confirmButtonColor: '#1c1c21',
+      background: '#0e0e10',
+      color: '#ffffff',
+    });
   } finally {
     loading.value = false;
   }
-
-  // reset form
-  formData.value = { name: '', email: '', message: '' };
 };
 </script>
 
@@ -52,8 +83,8 @@ const handleSubmit = async (e) => {
   <section id="contact" class="flex justify-center items-center py-24 min-h-screen px-5 md:px-10 bg-black text-white font-sans">
     <div class="w-full h-full md:px-10 px-5">
       <TitleHeader
-        title="Get in Touch – Let's Connect"
-        sub="💬 Have questions or ideas? Let's talk! 🚀"
+        title="Get in Touch"
+        sub="Let's connect"
       />
       <div class="grid grid-cols-1 xl:grid-cols-12 gap-10 mt-16">
         <div class="xl:col-span-5">
@@ -63,6 +94,7 @@ const handleSubmit = async (e) => {
               @submit="handleSubmit"
               class="w-full flex flex-col gap-7"
             >
+              <input type="hidden" name="date" v-model="formData.date" />
               <div>
                 <label for="name" class="block text-[#d9ecff] mb-2 font-semibold">Your name</label>
                 <input
@@ -92,14 +124,14 @@ const handleSubmit = async (e) => {
               </div>
 
               <div>
-                <label for="companionName" class="block text-[#d9ecff] mb-2 font-semibold">Companion Name <span class="text-sm text-[#839cb5] font-normal">(Optional)</span></label>
+                <label for="company" class="block text-[#d9ecff] mb-2 font-semibold">Company Name</label>
                 <input
                   type="text"
-                  id="companionName"
-                  name="companionName"
-                  v-model="formData.companionName"
+                  id="company"
+                  name="company"
+                  v-model="formData.company"
                   @input="handleChange"
-                  placeholder="Who's sticking with you?"
+                  placeholder="What's your company name?"
                   class="w-full px-4 py-4 md:text-base text-sm text-white placeholder:text-[#839cb5] bg-[#2d2d38] rounded-md border-none outline-none focus:ring-2 focus:ring-[#839cb5]/50 transition-all"
                 />
               </div>

@@ -1,11 +1,13 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TitleHeader from './TitleHeader.vue';
 import { techStackImgs } from '../constants';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const sectionRef = ref(null);
 
 onMounted(() => {
   // Animate the tech cards in the skills section
@@ -24,7 +26,7 @@ onMounted(() => {
       ease: 'power2.inOut', // Ease of the animation
       stagger: 0.2, // Stagger the animation by 0.2 seconds
       scrollTrigger: {
-        trigger: '#skills', // Trigger the animation when the user scrolls to the #skills wrapper
+        trigger: sectionRef.value, // Trigger the animation when the user scrolls to the #skills wrapper
         start: 'top center', // Start the animation when the top of the wrapper is at the center of the screen
       },
     }
@@ -33,20 +35,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="tech-stack" class="py-24 min-h-screen bg-white text-primary font-sans relative">
+  <section id="tech-stack" ref="sectionRef" class="py-24 min-h-screen bg-white text-primary font-sans relative">
     <div class="flex justify-center items-center px-5 md:px-10 h-full">
       <div class="w-full h-full md:px-10 px-5">
         <TitleHeader
-          title="How I Can Contribute & My Key Skills"
-          sub="🤝 What I Bring to the Table"
+          title="Engineering Focus & Core Capabilities"
+          sub="🔧 Core Expertise"
           theme="light"
         />
 
-        <div class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16">
+        <div class="flex flex-wrap justify-center gap-5 md:gap-10 xl:gap-16 mt-16">
           <div
             v-for="(techStackIcon, index) in techStackImgs"
             :key="index"
-            class="tech-card relative overflow-hidden group rounded-full xl:h-[50vh] h-72 border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
+            class="tech-card relative overflow-hidden group rounded-full xl:h-[50vh] h-72 w-full md:w-72 xl:w-80 border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
           >
             <div class="absolute left-0 bottom-[-50%] md:bottom-[-100%] w-full h-[120%] group-hover:bottom-0 transition-all duration-700 z-0">
               <!-- Wave Shape -->

@@ -1,10 +1,24 @@
 <script setup>
 import { TresCanvas } from '@tresjs/core';
 import { OrbitControls, GLTFModel } from '@tresjs/cientos';
-import { onErrorCaptured, ref } from 'vue';
+import { onErrorCaptured, ref, onMounted, onUnmounted } from 'vue';
 
 
 const controlsRef = ref(null);
+const isMobile = ref(false);
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 768;
+};
+
+onMounted(() => {
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile);
+});
 
 onErrorCaptured((err) => {
   console.error("🔴 3D Model Loading Error:", err);
@@ -29,7 +43,7 @@ onErrorCaptured((err) => {
 
     <OrbitControls
       ref="controlsRef"
-      enable-zoom
+      :enable-zoom="isMobile"
       enable-pan
     />
 
