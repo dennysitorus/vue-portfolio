@@ -52,97 +52,57 @@ onUnmounted(() => {
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: 'Sparepart Management System',
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
-    description: 'A full-featured e-commerce solution built with ASP.NET Core and Vue.js. Features include real-time inventory, secure payments (Stripe), and an admin dashboard.',
-    fullDescription: 'This project is a comprehensive e-commerce platform designed to scale. It includes a microservices-based backend using ASP.NET Core, enabling high availability and fault tolerance. The frontend utilizes Vue.js for a responsive and interactive user experience. Key features include:\n\n- **Real-time Inventory Management**: Powered by Redis for sub-millisecond updates.\n- **Secure Payments**: Integrated Stripe API with strong customer authentication (SCA).\n- **Admin Dashboard**: Comprehensive analytics and order management tools.\n- **Cloud Native**: Deployed on Azure Kubernetes Service (AKS).',
-    stack: ['ASP.NET Core', 'Vue.js', 'PostgreSQL', 'Redis'],
-    link: '#',
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_1400,q_auto,f_auto/v1769541965/Screenshot_2026-01-28_022344_jkrpvd.png',
+    description: '<strong>Sparepart Management System</strong> is an enterprise-oriented web application developed to support structured recording and monitoring of <strong>sparepart inventory movements</strong>, including <strong>incoming</strong> and <strong>outgoing stock</strong> activities within warehouse operations. The system is designed to improve <strong>data integrity</strong>, <strong>traceability</strong>, and <strong>control</strong> over inventory processes by implementing role-based access and approval mechanisms.<br><br>The application enables <strong>Warehouse Staff</strong> to submit stock requests and record sparepart usage, while <strong>Admin Staff</strong> manage master data and system configurations. Each stock-in and stock-out transaction is processed through a <strong>tiered approval workflow</strong>, involving <strong>Warehouse Heads</strong> and <strong>Managers</strong>, ensuring that all inventory movements are properly reviewed, authorized, and documented before execution.<br><br>To support operational monitoring and analysis, the system provides <strong>monthly inventory reports</strong> in <strong>PDF format</strong> as well as <strong>interactive charts</strong> that display average maximum sparepart usage trends. These insights help management identify consumption patterns, anticipate future needs, and reduce the risk of overstocking or stock shortages.<br><br>In addition to transaction management, <strong>Sparepart Management System</strong> offers real-time inventory visibility through dashboards that present current stock levels, minimum stock thresholds, and usage statistics. This allows stakeholders to make informed decisions based on accurate and up-to-date data across warehouse operations.<br><br><strong>Sparepart Management System</strong> is built with a focus on <strong>reliability</strong>, <strong>maintainability</strong>, and <strong>operational efficiency</strong>, reflecting an enterprise-level approach to inventory and workflow management. The application supports scalable warehouse processes while ensuring compliance, accountability, and transparent inventory control across organizational roles.',
+    stack: ['Laravel', 'Livewire', 'Tailwind CSS', 'Alpine.js', 'Bootstrap', 'MySQL'],
+    link: 'https://projects.awsitsoft.com/warehouse/',
     gallery: [
-      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
-      'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&q=80',
-      'https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=800&q=80',
-      'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&q=80'
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769541964/Screenshot_2026-01-28_022326_ynhdmc.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769541965/Screenshot_2026-01-28_022344_jkrpvd.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769541963/Screenshot_2026-01-28_022412_ecntjv.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769541963/Screenshot_2026-01-28_022418_f2b29o.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769541964/Screenshot_2026-01-28_022433_goxgqt.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769541964/Screenshot_2026-01-28_022449_wcf0cj.png',
     ]
   },
   {
     id: 2,
-    title: 'Healthcare Portal',
+    title: 'SFI Access',
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-    description: 'Patient management system compliant with HIPAA regulations. Secure document sharing and appointment scheduling.',
-    fullDescription: 'A secure and compliant healthcare management system. \n\n- **Security**: End-to-end encryption for all patient data.\n- **Compliance**: Fully HIPAA compliant auditing and access controls.\n- **Telehealth**: Integrated video consultation features.',
-    stack: ['.NET 8', 'Blazor', 'Azure SQL'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_1400,q_auto,f_auto/v1769543516/Screenshot_2026-01-28_025048_bsscqu.png',
+    description: '<strong>SFI Access</strong> is an enterprise authentication and access management application developed to consolidate multiple internal systems into a <strong>single sign-on (SSO)</strong> environment. The application addresses the challenge of fragmented authentication flows by allowing users to authenticate once and securely access multiple applications without repeated login actions.<br><br> Prior to the implementation of <strong>SFI Access</strong>, each application operated with its own independent authentication mechanism, resulting in duplicated login processes and increased user friction. With SFI Access, authentication is centralized while ensuring that existing <strong>business processes</strong>, application logic, and operational workflows remain unchanged and unaffected.<br><br> The application functions as a unified access gateway, handling user authentication, session management, and authorization mapping across integrated systems. Once authenticated, users can seamlessly navigate between applications without re-entering credentials, improving operational efficiency and reducing authentication-related overhead.<br><br> <strong>SFI Access</strong> is designed to integrate securely with existing applications through standardized authentication and identity validation mechanisms, ensuring consistency, scalability, and maintainability across the ecosystem. Centralized login management also enhances security control, auditing capability, and access visibility at the system level.<br><br> Built with a focus on <strong>reliability</strong>, <strong>security</strong>, and <strong>system interoperability</strong>, <strong>SFI Access</strong> supports enterprise needs for unified identity management while maintaining flexibility for future application expansion. The platform provides a solid foundation for scalable system integration, improved user experience, and streamlined access governance across organizational applications.',
+    stack: ['React', '.NET MVC', 'Bootstrap', 'SQL Server', 'JWT'],
     link: '#',
-    gallery: [
-      'https://images.unsplash.com/photo-1576091160550-2187d80afea2?w=800&q=80',
-      'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
-      'https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80',
-      'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=800&q=80'
-    ]
+    gallery: []
   },
-  {
+    {
     id: 3,
-    title: 'Finance Dashboard',
+    title: 'PORT Connect',
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-    description: 'Real-time financial data visualization tool for enterprise clients. optimized for high-volume data processing.',
-    fullDescription: 'High-performance dashboard for financial analytics.\n\n- **Visualization**: D3.js powered interactive charts.\n- **Performance**: Capable of processing 100k+ events per second.',
-    stack: ['React', 'D3.js', '.NET API'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_1400,q_auto,f_auto/v1769546019/Frame_1_zzaqjn.png',
+    description: '<strong>Port Connect</strong> is an integrated dashboard application developed to support the management of <strong>vessel supply orders</strong> while ships are docked at <strong>Merak</strong> or <strong>Bakauheni ports</strong>. The application serves as a centralized control platform that connects ship-side procurement activities with port-side operational fulfillment.<br><br> The system is designed to integrate with an <strong>Android-based ordering application</strong> used by vessels, allowing ship operators or crew members to place orders directly from onboard systems. Once submitted, orders are synchronized with the <strong>Port Connect dashboard</strong>, enabling port operators to manage order processing, preparation, and delivery coordination in real time.<br><br> <strong>Port Connect</strong> supports the procurement of various operational and consumption goods required by vessels, including <strong>ship equipment</strong> and <strong>crew supplies</strong> such as mooring ropes, hygiene kits, dining utensils, staple meals, snacks, and other daily necessities for crew members. Orders can be prepared for <strong>direct delivery to the vessel</strong> or <strong>pickup at the port</strong>, depending on operational requirements and docking schedules.<br><br> The dashboard provides visibility into order status, item availability, fulfillment progress, and delivery readiness, enabling efficient coordination between port operators and vessel crews. This centralized workflow helps reduce delays during port stays and ensures that required supplies are available when vessels are ready to depart.<br><br> <strong>Port Connect</strong> is built with a focus on <strong>system integration</strong>, <strong>operational efficiency</strong>, and <strong>scalability</strong>, supporting seamless communication between mobile applications and backend systems. The platform reflects an enterprise-level approach to port logistics management, ensuring reliable order handling, streamlined supply distribution, and improved service efficiency within port operations.',
+    stack: ['React', 'Golang', 'PostgreSQL', 'JWT', 'CI/CD', 'Docker'],
     link: '#',
     gallery: [
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      'https://images.unsplash.com/photo-1543286386-713df548e9cc?w=800&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-      'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80'
-    ]
-  },
-  // {
-  //   id: 4,
-  //   title: 'Menarique',
-  //   category: 'Mobile',
-  //   image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_1200,q_auto,f_auto/v1769420980/project1_ejreyd.png',
-  //   description: null,
-  //   fullDescription: 'Android mobile application developed to support vehicle verification processes within Suzuki Finance Indonesia.\n\n- **License Plate Recognition**: Utilizes camera-based OCR with a custom-trained YOLOv8 and EasyOCR pipeline connected to a Python Flask backend.\n- **Vehicle & Payment Validation**: Verifies vehicle registration status and checks outstanding payment obligations through internal backend services.\n- **Multiple Input Methods**: Supports license plate input via camera OCR, voice-based speech-to-text, and manual keyboard entry.\n- **Text-to-Speech Feedback**: Provides audio responses to improve usability during hands-free or constrained field operations.\n- **Modern Android Stack**: Built using Kotlin and Jetpack Compose with a focus on reliability and operational efficiency.',
-  //   stack: ['OCR', 'Computer Vision', 'Kotlin', 'Jetpack Compose', 'YOLOv8', 'Python', 'Firebase', 'Android'],
-  //   link: '#',
-  //   gallery: [
-  //     'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
-  //     'https://images.unsplash.com/photo-1434493789847-2f02ea6ca920?w=800&q=80',
-  //     'https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80',
-  //     'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80'
-  //   ]
-  // },
-  {
-    id: 5,
-    title: 'Travel Companion',
-    category: 'Mobile',
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80',
-    description: 'AR-enabled travel guide application. Points of interest overlay through camera view.',
-    fullDescription: 'Augmented Reality travel guide.\n\n- **AR Navigation**: Point your camera to see navigation arrows and POI details.\n- **Offline Mode**: Download maps and guides for offline use.',
-    stack: ['Unity', 'C#', 'ARCore'],
-    link: '#',
-    gallery: [
-      'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=800&q=80',
-      'https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&q=80',
-      'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80',
-      'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=800&q=80'
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769546021/Frame_suadbw.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769546019/Frame_1_zzaqjn.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769546019/Frame_2_wihajn.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769546018/Frame_3_wjsvbm.png',
     ]
   },
   {
-    id: 6,
+    id: 4,
     title: 'Menarique',
     category: 'Mobile',
     image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769420980/project1_ejreyd.png',
     description: 'Android application for vehicle verification using OCR and voice recognition.',
-    fullDescription: `Menarique is an Android mobile application developed to support vehicle verification processes within **Suzuki Finance Indonesia**. The application is designed to ensure that inspected vehicles are officially registered in the company’s internal systems and to validate customer payment compliance during field operations.
-
-The application uses the device camera as the primary input to automatically recognize vehicle license plates. This process is handled through an **OCR pipeline** connected to a **Python Flask** backend, combining **YOLOv8** for license plate detection and **EasyOCR** for text extraction. The detection model was trained manually using a curated dataset consisting exclusively of Suzuki vehicles, enabling higher accuracy within the company’s specific operational context.
-
-After a license plate is successfully detected, the extracted data is forwarded to downstream backend services that integrate with Suzuki Finance’s internal databases. These services return verification results indicating whether the vehicle matches registered records and whether any outstanding payment obligations are associated with the unit.
-
-To support flexibility in real-world usage, Menarique provides three methods for license plate input: **camera-based OCR**, **voice input** through speech-to-text, and **manual keyboard entry**. The application also includes a text-to-speech feature to deliver audio feedback to users, improving usability in hands-free or constrained operational environments. Menarique is built using **Kotlin** and **Jetpack Compose**, focusing on reliability, clarity, and efficiency for daily operational use.`,
+    fullDescription: `Menarique is an Android mobile application developed to support vehicle verification processes within <strong>Suzuki Finance Indonesia</strong>. The application is designed to ensure that inspected vehicles are officially registered in the company’s internal systems and to validate customer payment compliance during field operations.<br>
+The application uses the device camera as the primary input to automatically recognize vehicle license plates. This process is handled through an <strong>OCR pipeline</strong> connected to a <strong>Python Flask</strong> backend, combining <strong>YOLOv8</strong> for license plate detection and <strong>EasyOCR</strong> for text extraction. The detection model was trained manually using a curated dataset consisting exclusively of Suzuki vehicles, enabling higher accuracy within the company’s specific operational context.<br>
+After a license plate is successfully detected, the extracted data is forwarded to downstream backend services that integrate with Suzuki Finance’s internal databases. These services return verification results indicating whether the vehicle matches registered records and whether any outstanding payment obligations are associated with the unit.<br>
+To support flexibility in real-world usage, Menarique provides three methods for license plate input: <strong>camera-based OCR</strong>, <strong>voice input</strong> through speech-to-text, and <strong>manual keyboard entry</strong>. The application also includes a text-to-speech feature to deliver audio feedback to users, improving usability in hands-free or constrained operational environments. Menarique is built using <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>, focusing on reliability, clarity, and efficiency for daily operational use.
+`,
     stack: ['OCR', 'Python', 'YOLOv8', 'EasyOCR', 'Computer Vision', 'Kotlin', 'Android', 'Firebase', 'Jetpack Compose'],
     link: '',
     gallery: [
@@ -153,7 +113,52 @@ To support flexibility in real-world usage, Menarique provides three methods for
       'https://res.cloudinary.com/dmauujsdz/image/upload/v1769420787/Screenshot_20250521_024011_htxdca.png',
       'https://res.cloudinary.com/dmauujsdz/image/upload/v1769420798/Screenshot_20250521_024004_qd28us.png',
     ]
-  }
+  },
+  {
+    id: 5,
+    title: 'BTN Pinpad',
+    category: 'Mobile',
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769516902/Gemini_Generated_Image_bv83nmbv83nmbv83_vhegd5.png',
+    description: 'Android application for attendance and work report.',
+    fullDescription: `<strong>BTN Pinpad</strong> is an Android-based application developed to support secure banking operations within <strong>Bank BTN</strong>, focusing on <strong>ATM card registration</strong>, <strong>PIN verification</strong>, and <strong>mobile PIN enrollment</strong> for customers. The application is designed to streamline transaction processes at branch level while ensuring secure handling of customer credentials and device operations.<br>
+The application enables bank officers to perform <strong>ATM card registration</strong>, <strong>PIN verification</strong>, and <strong>mobile PIN setup</strong> directly through a dedicated <strong>pinpad device</strong>. PIN input and verification flows are handled securely within the application to support operational standards and banking security requirements.<br>
+BTN Pinpad also includes <strong>device activation</strong> and <strong>remote configuration</strong> features, allowing operators to initialize and manage devices efficiently. The application supports <strong>over-the-air (OTA) updates</strong>, enabling software updates to be deployed remotely via <strong>cloud infrastructure</strong> without requiring physical access to the device.<br>
+In addition to the mobile application, the system is integrated with a <strong>web-based management platform</strong> used for <strong>audit</strong>, <strong>monitoring</strong>, and <strong>master data management</strong>. This platform provides visibility into device status, activation history, and operational health across branches, supporting centralized oversight and compliance needs.<br>
+<strong>BTN Pinpad</strong> is built with a focus on <strong>reliability</strong>, <strong>security</strong>, and <strong>operational efficiency</strong>, ensuring that branch personnel and customers can perform banking transactions smoothly while enabling centralized monitoring and lifecycle management of deployed devices.`,
+    stack: ['Java', 'RxJava', 'QR Code', 'Firebase', 'OneSignal', 'Laravel'],
+    link: '',
+    gallery: [
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769516880/Login_Screen_sjlsxo.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769514876/PIN_Screen_u2kjwv.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769514908/Home_Screeen_qzgxsg.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769514876/Settings_Screen_ocit2j.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769516885/Menu_-_Device_Activation_w8fp65.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769516882/Menu_-_Device_Activation_Message_t5nobx.png',
+    ]
+  },
+    {
+    id: 6,
+    title: 'Turjawali Patrol',
+    category: 'Mobile',
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769513424/Gemini_Generated_Image_oex4wboex4wboex4_y1i0cl.png',
+    description: 'Android application for attendance and work report.',
+    fullDescription: `Turjawali Patrol is an Android mobile application developed to support daily operational activities for field-based personnel, including <strong>security guards</strong>, <strong>office assistants</strong>, and <strong>cleaning service staff</strong>. The application is designed to centralize <strong>patrol logging</strong>, <strong>attendance tracking</strong>, and <strong>guard tour (jaga dan atur)</strong> activities within a single operational system.<br>
+The application enables users to record patrol activities, attendance (time-in), and guard tour events directly from their mobile devices. Attendance and guard tour processes are supported through <strong>QR code scanning</strong>, ensuring accurate validation at designated checkpoints. Each attendance action can also be tagged with <strong>location data</strong>, providing additional verification for operational records.<br>
+Turjawali Patrol is built with an <strong>offline-first architecture</strong>, allowing users to continue performing patrols, attendance, and activity reporting even when network connectivity is unavailable. All operational data is stored <strong>locally on the device</strong> and automatically synchronized with backend services once a network connection is restored, ensuring continuity of work in low-signal environments.<br>
+To support safety and incident response, the application includes <strong>Attention (Atensi)</strong> and <strong>SOS</strong> features. These features enable users to send alerts and emergency notifications to <strong>other users within the same company</strong>, allowing faster coordination and response during critical situations.<br>
+The application also provides a <strong>personal reporting module</strong>, allowing users to view their own patrol logs, attendance history, activity reports, and data synchronization status directly from the app. <strong>Turjawali Patrol</strong> is built using <strong>Kotlin</strong> for Android development, with a focus on <strong>reliability</strong>, <strong>clarity</strong>, and <strong>operational efficiency</strong> in real-world field usage.
+`,
+    stack: ['Java', 'RxJava', 'QR Code', 'Firebase', 'OneSignal', 'Laravel'],
+    link: 'https://play.google.com/store/apps/details?id=com.turjawali.patrolnew',
+    gallery: [
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769513922/Screenshot_1748866266_fjlttr.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769513923/Screenshot_1748866262_m7a9y1.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769513922/Screenshot_1748866273_rafxha.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769513930/Screenshot_1748866317_h9547j.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769513926/Screenshot_1748866302_rpbzpe.png',
+      'https://res.cloudinary.com/dmauujsdz/image/upload/v1769513925/Screenshot_1748866296_igiw1u.png',
+    ]
+  },
 ];
 
 const project = computed(() => projects.find(p => p.id === parseInt(projectId)));
@@ -220,7 +225,7 @@ const formattedDescription = computed(() => {
                 </div>
                 
                 <a v-if="project.link && project.link !== '#'" :href="project.link" target="_blank" class="block w-full py-4 bg-primary text-white text-center font-bold rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
-                  {{ project.category === 'Mobile' ? 'View on Play Store' : 'Launch Project' }}
+                  {{ project.category === 'Mobile' ? 'View on Play Store' : 'Launch Demo' }}
                 </a>
             </div>
           </div>

@@ -5,33 +5,33 @@ import TitleHeader from './TitleHeader.vue';
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: 'Sparepart Management',
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
-    description: 'A full-featured e-commerce solution built with ASP.NET Core and Vue.js. Features include real-time inventory, secure payments (Stripe), and an admin dashboard.',
-    stack: ['ASP.NET Core', 'Vue.js', 'PostgreSQL', 'Redis'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769547271/Sparepart_Management_System_whurar.png',
+    description: 'Sparepart Management System is a web-based application designed to manage sparepart inventory by recording stock-in and stock-out transactions through structured, approval-based workflows.',
+    stack: ['Laravel', 'Livewire', 'Tailwind CSS', 'Alpine.js', 'Bootstrap', 'MySQL'],
     link: '#'
   },
   {
     id: 2,
-    title: 'Healthcare Portal',
+    title: 'SFI Access',
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-    description: 'Patient management system compliant with HIPAA regulations. Secure document sharing and appointment scheduling.',
-    stack: ['.NET 8', 'Blazor', 'Azure SQL'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769547272/SFI_Access_o85zhr.png',
+    description: 'SFI Access is a centralized authentication platform that unifies multiple internal applications through a single sign-on (SSO) mechanism, allowing users to access all systems with one login while maintaining existing business processes and improving security and user experience.',
+    stack: ['React', '.NET MVC', 'Bootstrap', 'SQL Server', 'JWT'],
     link: '#'
   },
   {
     id: 3,
-    title: 'Finance Dashboard',
+    title: 'PORT Connect',
     category: 'Web',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-    description: 'Real-time financial data visualization tool for enterprise clients. optimized for high-volume data processing.',
-    stack: ['React', 'D3.js', '.NET API'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769547273/Port_Connect_Mockup_cnkcjn.png',
+    description: 'Port Connect is a centralized dashboard that manages vessel supply orders placed through an Android application while ships are docked at Merak or Bakauheni ports, enabling efficient coordination of procurement, preparation, and delivery or pickup of operational and crew supplies.',
+    stack: ['React', 'Golang', 'PostgreSQL', 'JWT', 'CI/CD', 'Docker'],
     link: '#'
   },
   {
-    id: 6,
+    id: 4,
     title: 'Menarique',
     category: 'Mobile',
     image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769420980/project1_ejreyd.png',
@@ -41,11 +41,20 @@ const projects = [
   },
   {
     id: 5,
-    title: 'Travel Companion',
+    title: 'BTN Pinpad',
     category: 'Mobile',
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80',
-    description: 'AR-enabled travel guide application. Points of interest overlay through camera view.',
-    stack: ['Unity', 'C#', 'ARCore'],
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769516902/Gemini_Generated_Image_bv83nmbv83nmbv83_vhegd5.png',
+    description: 'BTN Pinpad is an Android-based application designed to support ATM card registration, PIN verification, and mobile PIN enrollment, integrated with centralized device monitoring and remote management capabilities.',
+    stack: ['Kotlin', 'Jetpack Compose', 'OTA'],
+    link: '#'
+  },
+  {
+    id: 6,
+    title: 'Turjawali Patrol',
+    category: 'Mobile',
+    image: 'https://res.cloudinary.com/dmauujsdz/image/upload/w_900,q_auto,f_auto/v1769513424/Gemini_Generated_Image_oex4wboex4wboex4_y1i0cl.png',
+    description: 'Turjawali Patrol is an Android mobile application designed to support patrol logging, attendance tracking, and operational reporting for field personnel, with offline-first capabilities and integrated location verification.',
+    stack: ['Java', 'Firebase', 'SQLite', 'Kotlin'],
     link: '#'
   }
 ];
