@@ -50,18 +50,18 @@ onMounted(() => {
             :key="index"
             class="tech-card relative overflow-hidden group rounded-full xl:h-[50vh] h-72 w-full md:w-72 xl:w-80 border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
           >
-            <div class="absolute left-0 bottom-[-50%] md:bottom-[-100%] w-full h-[120%] group-hover:bottom-0 transition-all duration-700 z-0">
+            <div class="absolute left-0 bottom-[-125%] w-full h-[120%] group-hover:bottom-0 transition-all duration-700 z-0">
               <!-- Wave Shape -->
               <div class="w-full h-12 bg-repeat-x" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23000000'%3E%3C/path%3E%3C/svg%3E&quot;); background-size: 200% 100%; transform: translateY(2px);"></div>
               <!-- Solid Black Body -->
               <div class="w-full h-full bg-black translate-y-[-1px]"></div>
             </div>
             <div class="flex flex-col justify-center items-center xl:gap-5 h-full overflow-hidden relative z-10 group-hover:cursor-grab">
-              <div class="tech-icon-wrapper w-36 h-36 md:w-56 md:h-56">
+              <div class="tech-icon-wrapper w-36 h-36 md:w-40 md:h-40 xl:w-56 xl:h-56">
                 <img :src="techStackIcon.imgPath" alt="" />
               </div>
               <div class="px-4 w-full">
-                <p class="text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white md:text-primary md:group-hover:text-white transition-colors duration-300 text-center">{{ techStackIcon.name }}</p>
+                <p class="text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-primary group-hover:text-white transition-colors duration-300 text-center">{{ techStackIcon.name }}</p>
               </div>
             </div>
           </div>
