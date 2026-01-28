@@ -31,7 +31,6 @@ jobs:
           VITE_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_APP_EMAILJS_TEMPLATE_ID }}
           VITE_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_APP_EMAILJS_PUBLIC_KEY }}
 
-      # Pastikan .htaccess prod ikut ke dist
       - name: Inject .htaccess (PROD)
         run: |
           cat > dist/.htaccess <<'EOF'
@@ -45,32 +44,15 @@ jobs:
           RewriteRule ^ index.html [L]
           EOF
 
-      - name: Verify dist output
+      - name: Add deploy marker
         run: |
-          test -d dist
-          echo "=== dist content ==="
-          ls -la dist
+          echo "deployed $(date -u) from $GITHUB_SHA" > dist/__deploy_marker.txt
 
-      - name: Verify dist assets
+      - name: Ensure production directory exists & Clean assets
         run: |
-          test -d dist/assets
-          echo "=== dist/assets ==="
-          ls -la dist/assets | head
-
-      # Cleanup aman: hapus hanya folder assets di remote (biar gak numpuk file hash lama)
-      # - name: Cleanup remote assets (PROD)
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y lftp
-
-      #     # Hapus hanya folder assets di root deploy
-      #     lftp -e "
-      #       set ssl:verify-certificate no;
-      #       open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
-      #       cd ${{ secrets.FTP_SERVER_DIR_PRODUCTION }};
-      #       rm -r assets;
-      #       bye
-      #     "
+          sudo apt-get update
+          sudo apt-get install -y lftp
+          lftp -e "set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; mkdir -p ${{ secrets.FTP_SERVER_DIR_PRODUCTION }}; cd ${{ secrets.FTP_SERVER_DIR_PRODUCTION }}; rm -r assets || true; rm .ftp-deploy-sync-state.json || true; mkdir -p assets; bye"
 
       - name: Deploy to cPanel (FTP) - PROD
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -81,16 +63,3 @@ jobs:
           local-dir: dist/
           server-dir: ${{ secrets.FTP_SERVER_DIR_PRODUCTION }}
           log-level: verbose
-
-      - name: Verify dist output
-        run: |
-          test -f dist/index.html
-          test -d dist/assets
-          echo "=== dist ==="
-          ls -la dist
-          echo "=== dist/assets ==="
-          ls -la dist/assets | head -n 20
-
-      - name: Add deploy marker
-        run: |
-          echo "deployed $(date -u) from $GITHUB_SHA" > dist/__deploy_marker.txt
