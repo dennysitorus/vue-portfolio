@@ -50,7 +50,7 @@ jobs:
           test -d dist
           echo "=== dist content ==="
           ls -la dist
-          
+
       - name: Verify dist assets
         run: |
           test -d dist/assets
@@ -79,5 +79,18 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR_PROD }} # isi: ./
+          server-dir: ./
           log-level: verbose
+
+      - name: Verify dist output
+        run: |
+          test -f dist/index.html
+          test -d dist/assets
+          echo "=== dist ==="
+          ls -la dist
+          echo "=== dist/assets ==="
+          ls -la dist/assets | head -n 20
+
+      - name: Add deploy marker
+        run: |
+          echo "deployed $(date -u) from $GITHUB_SHA" > dist/__deploy_marker.txt
