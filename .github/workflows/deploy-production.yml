@@ -67,7 +67,7 @@ jobs:
       #     lftp -e "
       #       set ssl:verify-certificate no;
       #       open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
-      #       cd ${{ secrets.FTP_SERVER_DIR_PROD }};
+      #       cd ${{ secrets.FTP_SERVER_DIR_PRODUCTION }};
       #       rm -r assets;
       #       bye
       #     "
@@ -79,7 +79,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
-          server-dir: ./
+          server-dir: ${{ secrets.FTP_SERVER_DIR_PRODUCTION }}
           log-level: verbose
 
       - name: Verify dist output
