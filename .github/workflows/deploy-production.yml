@@ -50,21 +50,27 @@ jobs:
           test -d dist
           echo "=== dist content ==="
           ls -la dist
+          
+      - name: Verify dist assets
+        run: |
+          test -d dist/assets
+          echo "=== dist/assets ==="
+          ls -la dist/assets | head
 
       # Cleanup aman: hapus hanya folder assets di remote (biar gak numpuk file hash lama)
-      - name: Cleanup remote assets (PROD)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
+      # - name: Cleanup remote assets (PROD)
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y lftp
 
-          # Hapus hanya folder assets di root deploy
-          lftp -e "
-            set ssl:verify-certificate no;
-            open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
-            cd ${{ secrets.FTP_SERVER_DIR_PROD }};
-            rm -r assets;
-            bye
-          "
+      #     # Hapus hanya folder assets di root deploy
+      #     lftp -e "
+      #       set ssl:verify-certificate no;
+      #       open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
+      #       cd ${{ secrets.FTP_SERVER_DIR_PROD }};
+      #       rm -r assets;
+      #       bye
+      #     "
 
       - name: Deploy to cPanel (FTP) - PROD
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -75,9 +81,3 @@ jobs:
           local-dir: dist/
           server-dir: ${{ secrets.FTP_SERVER_DIR_PROD }} # isi: ./
           log-level: verbose
-
-      - name: Verify dist assets
-        run: |
-          test -d dist/assets
-          echo "=== dist/assets ==="
-          ls -la dist/assets | head
