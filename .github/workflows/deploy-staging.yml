@@ -47,7 +47,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y lftp
-          lftp -e "set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; mkdir -p ${{ secrets.FTP_SERVER_DIR_STAGING }}; bye"
+          lftp -e "set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; cd ${{ secrets.FTP_SERVER_DIR_STAGING }} || mkdir -p ${{ secrets.FTP_SERVER_DIR_STAGING }}; bye"
 
       - name: Deploy to STAGING (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
