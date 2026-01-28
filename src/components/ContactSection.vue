@@ -7,8 +7,6 @@ import ContactExperience from './ContactExperience.vue';
 
 const formRef = ref(null);
 
-
-
 const formData = ref({
   name: '',
   email: '',
@@ -32,8 +30,8 @@ const handleSubmit = async (e) => {
 
   loading.value = true;
   
-  // Set current date/time
-  formData.value.date = new Date().toLocaleString();
+  // Set current year
+  formData.value.date = new Date().getFullYear();
 
   // Wait for DOM update to ensure hidden input has the value
   await nextTick();

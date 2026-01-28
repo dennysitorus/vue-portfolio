@@ -6,49 +6,6 @@ import TitleHeader from './TitleHeader.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// const experiences = ref([
-//   {
-//     id: 1,
-//     role: '.NET Full Stack Developer',
-//     company: 'PT Adaro Logistics',
-//     period: 'Jul 2025 - Present',
-//     description: 'Designing and developing production-grade .NET MVC applications for real-time fuel calculation in logistics operations. Built .NET 9 APIs to support Android mobile applications using Kotlin and Jetpack Compose with offline-first capabilities. Developed automation tools including a Telegram console application and Power Automate workflows to improve operational efficiency and reduce manual processes.',
-//     tags: ['.NET 9', 'ASP.NET MVC', 'REST API', 'Android', 'Kotlin', 'Jetpack Compose', 'SQL Server', 'Azure DevOps']
-//   },
-//   {
-//     id: 2,
-//     role: 'Senior Android Engineer (Consulting)',
-//     company: 'IT Consulting Company',
-//     period: '2025 (3-month Project)',
-//     description: 'Acted as a senior Android consultant for a client-facing project, leading requirement gathering sessions with users and translating business needs into technical solutions. Collaborated with developers to refine implementation approaches, performed code reviews to ensure quality and maintainability, and handled critical bug fixes and hotfixes for production issues. Delivered technical presentations and solution walkthroughs to users to validate outcomes and ensure alignment.',
-//     tags: ['Android', 'Kotlin', 'Consulting', 'Requirement Gathering', 'Code Review', 'Bug Fixing']
-//   },
-//   {
-//     id: 3,
-//     role: 'IT Development Specialist',
-//     company: 'PT Suzuki Finance Indonesia',
-//     period: 'Sept 2021 - Mar 2025',
-//     description: 'Developed and maintained enterprise-grade financial systems using C# with ASP.NET Web Forms and MVC, supporting high-volume transactional operations. Optimized complex T-SQL queries and stored procedures in SQL Server to improve system performance. Integrated SSO and third-party services through secure internal APIs and led refactoring efforts to reduce technical debt and improve maintainability.',
-//     tags: ['C#', 'ASP.NET MVC', 'Web Forms', 'SQL Server', 'T-SQL', 'SSO', 'Enterprise Systems']
-//   },
-//   {
-//     id: 4,
-//     role: 'Android Developer',
-//     company: 'PT Argenta Danika Pradhana',
-//     period: 'Mar 2020 - Sept 2021',
-//     description: 'Developed and deployed Android applications using Java and RxJava, including attendance systems with CameraX, GPS validation, and offline-first functionality. Designed backend services using Laravel Lumen and MySQL with JWT-based authentication and REST APIs. Improved production stability through logging, crash monitoring, and structured error handling across the application lifecycle.',
-//     tags: ['Android', 'Java', 'RxJava', 'Offline-First', 'CameraX', 'Laravel Lumen', 'MySQL', 'REST API']
-//   },
-//   {
-//     id: 5,
-//     role: 'Technical Product Specialist (IoT & Fleet Systems)',
-//     company: 'PT DigitalInstincts Teknologi',
-//     period: 'Oct 2019 - Apr 2020',
-//     description: 'Worked closely with hardware and software teams to ensure IoT telemetry devices operated reliably in production fleet environments. Performed device monitoring and telemetry data analysis using SQL Server queries, supported system analysts with technical insights, prepared technical documentation, and assisted M2M teams in troubleshooting, flashing, and log analysis to maintain system stability in the field.',
-//     tags: ['IoT', 'Telemetry Devices', 'Fleet Management', 'SQL Server', 'M2M', 'System Validation', 'Technical Documentation']
-//   }
-// ]);
-
 const experiences = ref([
   {
     id: 1,
