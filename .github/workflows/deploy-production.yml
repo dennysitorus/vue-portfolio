@@ -75,3 +75,9 @@ jobs:
           local-dir: dist/
           server-dir: ${{ secrets.FTP_SERVER_DIR_PROD }} # isi: ./
           log-level: verbose
+
+      - name: Verify dist assets
+        run: |
+          test -d dist/assets
+          echo "=== dist/assets ==="
+          ls -la dist/assets | head
