@@ -1,16 +1,9 @@
-name: Deploy Vue (Vite) to cPanel via FTP (portofolio folder)
+name: Deploy PROD (tag) to cPanel via FTP (public_html root)
 
 on:
-  # Otomatis deploy setiap ada push ke main
-  # push:
-  #   branches: ["main"]
-
-  # Deploy hanya saat push tag yang diawali "v"
   push:
     tags:
       - "v*"
-
-  # Bisa deploy manual dari tab Actions
   workflow_dispatch: {}
 
 jobs:
@@ -18,48 +11,67 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Ambil source code dari repo ke runner GitHub
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      # Setup Node.js untuk build (Node 20 aman untuk tooling modern)
-      # cache npm membuat pipeline lebih cepat pada run berikutnya
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
 
-      # Install dependencies secara konsisten (menggunakan package-lock.json)
       - name: Install dependencies
         run: npm ci
 
-      # Build project pakai Vite → output default: dist/
-      - name: Build project
+      - name: Build project (PROD)
         run: npm run build
         env:
+          VITE_BASE_PATH: /
           VITE_APP_EMAILJS_SERVICE_ID: ${{ secrets.VITE_APP_EMAILJS_SERVICE_ID }}
           VITE_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_APP_EMAILJS_TEMPLATE_ID }}
           VITE_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_APP_EMAILJS_PUBLIC_KEY }}
 
-      # Cek dist ada dan tampilkan isinya (buat debugging kalau ada error)
+      # Pastikan .htaccess prod ikut ke dist
+      - name: Inject .htaccess (PROD)
+        run: |
+          cat > dist/.htaccess <<'EOF'
+          Options -Indexes
+          RewriteEngine On
+
+          RewriteCond %{REQUEST_FILENAME} -f [OR]
+          RewriteCond %{REQUEST_FILENAME} -d
+          RewriteRule ^ - [L]
+
+          RewriteRule ^ index.html [L]
+          EOF
+
       - name: Verify dist output
         run: |
           test -d dist
           echo "=== dist content ==="
           ls -la dist
 
-      # Upload dist/ ke server lewat FTP:
-      # - local-dir: dist/ (hasil build)
-      # - server-dir: portofolio/ (karena FTP kamu mendarat di public_html)
-      # - clean-slate: true menghapus file lama yang tidak ada di dist (biar rapi)
-      - name: Deploy to cPanel (FTP)
+      # Cleanup aman: hapus hanya folder assets di remote (biar gak numpuk file hash lama)
+      - name: Cleanup remote assets (PROD)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+          # Hapus hanya folder assets di root deploy
+          lftp -e "
+            set ssl:verify-certificate no;
+            open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
+            cd ${{ secrets.FTP_SERVER_DIR_PROD }};
+            rm -r assets;
+            bye
+          "
+
+      - name: Deploy to cPanel (FTP) - PROD
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }} # portofolio/
-          dangerous-clean-slate: true
+          server-dir: ${{ secrets.FTP_SERVER_DIR_PROD }} # isi: ./
           log-level: verbose
