@@ -43,20 +43,6 @@ jobs:
           RewriteRule ^ index.html [L]
           EOF
 
-      # Cleanup aman: hapus hanya assets/ di folder staging (biar gak numpuk file hash lama)
-      - name: Cleanup remote assets (STAGING)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
-
-          lftp -e "
-            set ssl:verify-certificate no;
-            open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }};
-            cd ${{ secrets.FTP_SERVER_DIR_STAGING }};
-            rm -r assets;
-            bye
-          "
-
       - name: Deploy to STAGING (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
